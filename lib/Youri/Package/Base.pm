@@ -40,4 +40,34 @@ sub _init {
     # do nothing
 }
 
+=head2 $package->age()
+
+Returns the age of this package
+
+=cut
+
+sub age {
+    croak "Not implemented method";
+}
+
+=head2 $package->source_package()
+
+Returns the source package of this package
+
+=cut
+
+sub source_package {
+    croak "Not implemented method";
+}
+
+=head2 $package->canonical_name()
+
+Returns the canonical name of this package
+
+=cut
+
+sub canonical_name {
+    croak "Not implemented method";
+}
+
 1;
