@@ -70,4 +70,14 @@ sub canonical_name {
     croak "Not implemented method";
 }
 
+=head2 $package->buildtime()
+
+Returns the time of last build, in number of second since epoch (like time())
+
+=cut
+
+sub buildtime {
+    croak "Not implemented method";
+}
+
 1;
