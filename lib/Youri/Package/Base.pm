@@ -16,6 +16,12 @@ use Carp;
 use strict;
 use warnings;
 
+use constant DEPENDENCY_NAME => 0;
+use constant DEPENDENCY_RANGE => 1;
+
+use constant FILE_NAME => 0;
+use constant FILE_MODE => 1;
+use constant FILE_MD5SUM => 2;
 
 =head2 new()
 
