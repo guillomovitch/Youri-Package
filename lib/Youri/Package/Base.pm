@@ -158,6 +158,16 @@ sub files {
     croak "Not implemented method";
 }
 
+=head2 gpg_key()
+
+Returns the gpg key id of package signature.
+
+=cut
+
+sub gpg_key {
+    croak "Not implemented method";
+}
+
 =head1 SUBCLASSING
 
 All instances methods have to be overrided, default implementation dies
