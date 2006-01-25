@@ -3,11 +3,11 @@ package Youri::Package::Base;
 
 =head1 NAME
 
-Youri::Package::Base - Abstract Package class
+Youri::Package::Base - Abstract package class
 
 =head1 DESCRIPTION
 
-This is the abstract Package class defining generic interface.
+This abstract class defines Youri::Package interface.
 
 =cut
 
@@ -24,9 +24,9 @@ use constant FILE_MD5SUM => 2;
 
 =head1 CLASS METHODS
 
-=head2 new()
+=head2 new(%args)
 
-Returns a C<Youri::Media::Package> object.
+Creates and returns a new Youri::Package object.
 
 Warning: do not call directly, call subclass constructor instead.
 
@@ -170,8 +170,7 @@ sub gpg_key {
 
 =head1 SUBCLASSING
 
-All instances methods have to be overrided, default implementation dies
-immediatly.
+All instances methods have to be implemented.
 
 =cut
 
