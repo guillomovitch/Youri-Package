@@ -62,6 +62,16 @@ sub pattern {
 
 =head1 INSTANCE METHODS
 
+=head2 is_source()
+
+Returns true if this package is a source package;
+
+=cut
+
+sub is_source {
+    croak "Not implemented method";
+}
+
 =head2 age()
 
 Returns the age of this package
