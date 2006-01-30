@@ -50,6 +50,16 @@ sub _init {
     # do nothing
 }
 
+=head2 pattern($name, $version, $release)
+
+Returns a pattern matching a file for a package, using available informations.
+
+=cut
+
+sub pattern {
+    croak "Not implemented method";
+}
+
 =head1 INSTANCE METHODS
 
 =head2 age()
