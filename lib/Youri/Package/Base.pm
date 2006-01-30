@@ -168,6 +168,16 @@ sub gpg_key {
     croak "Not implemented method";
 }
 
+=head2 information()
+
+Returns formated informations about the package.
+
+=cut
+
+sub information {
+    croak "Not implemented method";
+}
+
 =head1 SUBCLASSING
 
 All instances methods have to be implemented.
