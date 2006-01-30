@@ -66,6 +66,17 @@ sub pattern {
 
 =head1 INSTANCE METHODS
 
+=head2 file()
+
+Returns file containing this package.
+
+=cut
+
+sub file {
+    croak "Not implemented method";
+}
+
+
 =head2 is_source()
 
 Returns true if this package is a source package;
