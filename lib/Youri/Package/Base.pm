@@ -15,12 +15,16 @@ use Carp;
 use strict;
 use warnings;
 
-use constant DEPENDENCY_NAME => 0;
+use constant DEPENDENCY_NAME  => 0;
 use constant DEPENDENCY_RANGE => 1;
 
-use constant FILE_NAME => 0;
-use constant FILE_MODE => 1;
+use constant FILE_NAME   => 0;
+use constant FILE_MODE   => 1;
 use constant FILE_MD5SUM => 2;
+
+use constant CHANGE_AUTHOR => 0;
+use constant CHANGE_TIME   => 1;
+use constant CHANGE_TEXT   => 2;
 
 =head1 CLASS METHODS
 
@@ -152,7 +156,7 @@ sub provides {
 =head2 files()
 
 Returns the list of files contained in this package, each file being
-represented as an array reference, , with the following informations:
+represented as an array reference, with the following informations:
 
 =over
 
@@ -195,6 +199,46 @@ Returns formated informations about the package.
 =cut
 
 sub information {
+    croak "Not implemented method";
+}
+
+=head2 changes()
+
+Returns the list of changes for this package, each change being
+represented as an array reference, with the following informations:
+
+=over
+
+=item B<author>
+
+Author of the change (index CHANGE_AUTHOR).
+
+=item B<time>
+
+Time of the change (index CHANGE_TIME).
+
+=item B<text>
+
+Textual description of the change, as as array reference of individual changes
+(index CHANGE_TEXT).
+
+=back
+
+For more conveniency, fields index are available as constant in this package.
+
+=cut
+
+sub changes {
+    croak "Not implemented method";
+}
+
+=head2 last_change()
+
+Returns the last change for this package, as as structure described before.
+
+=cut
+
+sub last_change {
     croak "Not implemented method";
 }
 
