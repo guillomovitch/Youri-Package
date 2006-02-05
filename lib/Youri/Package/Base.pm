@@ -76,6 +76,15 @@ sub file {
     croak "Not implemented method";
 }
 
+=head2 compare($package)
+
+Compares release ordering with other package.
+
+=cut
+
+sub compare {
+    croak "Not implemented method";
+}
 
 =head2 is_source()
 
