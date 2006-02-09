@@ -66,13 +66,23 @@ sub pattern {
 
 =head1 INSTANCE METHODS
 
-=head2 file()
+=head2 get_file()
 
-Returns file containing this package.
+Returns the file containing this package.
 
 =cut
 
-sub file {
+sub get_file {
+    croak "Not implemented method";
+}
+
+=head2 set_file()
+
+Sets the file containing this package.
+
+=cut
+
+sub set_file {
     croak "Not implemented method";
 }
 
