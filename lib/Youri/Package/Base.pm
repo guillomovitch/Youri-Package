@@ -54,7 +54,7 @@ sub _init {
     # do nothing
 }
 
-=head2 pattern($name, $version, $release)
+=head2 pattern($name, $version, $release, $arch)
 
 Returns a pattern matching a file for a package, using available informations.
 
@@ -259,6 +259,16 @@ Returns the last change for this package, as as structure described before.
 =cut
 
 sub last_change {
+    croak "Not implemented method";
+}
+
+=head2 sign($name, $path, $passphrase)
+
+Signs the package with given name, keyring path and passphrase.
+
+=cut
+
+sub sign {
     croak "Not implemented method";
 }
 
