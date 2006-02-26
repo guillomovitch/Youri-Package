@@ -263,17 +263,6 @@ sub last_change {
     croak "Not implemented method";
 }
 
-=head2 install($dest, $perms)
-
-Install the file containing this package into given destination with given
-permissions. Automatically create parent directory if needed.
-
-=cut
-
-sub install {
-    croak "Not implemented method";
-}
-
 =head2 sign($name, $path, $passphrase)
 
 Signs the package with given name, keyring path and passphrase.
@@ -281,6 +270,16 @@ Signs the package with given name, keyring path and passphrase.
 =cut
 
 sub sign {
+    croak "Not implemented method";
+}
+
+=head2 extract()
+
+Extract package content in local directory.
+
+=cut
+
+sub extract {
     croak "Not implemented method";
 }
 
