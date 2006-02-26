@@ -76,15 +76,6 @@ sub get_file {
     croak "Not implemented method";
 }
 
-=head2 set_file()
-
-Sets the file containing this package.
-
-=cut
-
-sub set_file {
-    croak "Not implemented method";
-}
 
 =head2 compare($package)
 
@@ -269,6 +260,17 @@ Returns the last change for this package, as as structure described before.
 =cut
 
 sub last_change {
+    croak "Not implemented method";
+}
+
+=head2 install($dest, $perms)
+
+Install the file containing this package into given destination with given
+permissions. Automatically create parent directory if needed.
+
+=cut
+
+sub install {
     croak "Not implemented method";
 }
 
