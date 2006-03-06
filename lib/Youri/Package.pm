@@ -1,9 +1,9 @@
 # $Id$
-package Youri::Package::Base;
+package Youri::Package;
 
 =head1 NAME
 
-Youri::Package::Base - Abstract package class
+Youri::Package - Abstract package class
 
 =head1 DESCRIPTION
 
