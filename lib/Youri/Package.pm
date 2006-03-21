@@ -54,17 +54,77 @@ sub _init {
     # do nothing
 }
 
-=head2 pattern($name, $version, $release, $arch)
+=head2 get_pattern($name, $version, $release, $arch)
 
 Returns a pattern matching a file for a package, using available informations.
 
 =cut
 
-sub pattern {
+sub get_pattern {
     croak "Not implemented method";
 }
 
 =head1 INSTANCE METHODS
+
+=head2 get_name()
+
+Returns the name of this package.
+
+=cut
+
+sub get_name {
+    croak "Not implemented method";
+}
+
+=head2 get_version()
+
+Returns the version of this package.
+
+=cut
+
+sub get_version {
+    croak "Not implemented method";
+}
+
+=head2 get_release()
+
+Returns the release of this package.
+
+=cut
+
+sub get_release {
+    croak "Not implemented method";
+}
+
+=head2 get_arch()
+
+Returns the architecture of this package.
+
+=cut
+
+sub get_arch {
+    croak "Not implemented method";
+}
+
+=head2 get_full_name()
+
+Returns the full name of this package (name-version-release).
+
+=cut
+
+sub get_full_name {
+    croak "Not implemented method";
+}
+
+=head2 get_file_name()
+
+Returns the file name of this package (name-version-release.arch.extension).
+
+=cut
+
+sub get_file_name {
+    croak "Not implemented method";
+}
 
 =head2 get_file()
 
@@ -73,17 +133,6 @@ Returns the file containing this package.
 =cut
 
 sub get_file {
-    croak "Not implemented method";
-}
-
-
-=head2 compare($package)
-
-Compares release ordering with other package.
-
-=cut
-
-sub compare {
     croak "Not implemented method";
 }
 
@@ -97,38 +146,78 @@ sub is_source {
     croak "Not implemented method";
 }
 
-=head2 age()
+=head2 get_age()
 
 Returns the age of this package
 
 =cut
 
-sub age {
+sub get_age {
     croak "Not implemented method";
 }
 
-=head2 source_package()
+=head2 get_url()
+
+Returns the URL of this package
+
+=cut
+
+sub get_url {
+    croak "Not implemented method";
+}
+
+=head2 get_summary()
+
+Returns the summary of this package
+
+=cut
+
+sub get_summary {
+    croak "Not implemented method";
+}
+
+=head2 get_description()
+
+Returns the description of this package
+
+=cut
+
+sub get_description {
+    croak "Not implemented method";
+}
+
+=head2 get_packager()
+
+Returns the packager of this package.
+
+=cut
+
+sub get_packager {
+    croak "Not implemented method";
+}
+
+=head2 get_source_package()
 
 Returns the name of the source package of this package.
 
 =cut
 
-sub source_package {
+sub get_source_package {
     croak "Not implemented method";
 }
 
-=head2 canonical_name()
+=head2 get_canonical_name()
 
 Returns the canonical name of this package, shared by its multiple components,
 usually the one from the source package.
 
 =cut
 
-sub canonical_name {
+sub get_canonical_name {
     croak "Not implemented method";
 }
 
-=head2 requires()
+=head2 get_requires()
 
 Returns the list of dependencies required by this package, each dependency
 being represented as an array reference, with the following informations:
@@ -149,22 +238,32 @@ For more conveniency, fields index are available as constant in this package.
 
 =cut
 
-sub requires {
+sub get_requires {
     croak "Not implemented method";
 }
 
-=head2 provides()
+=head2 get_provides()
 
 Returns the list of dependencies provided by this package, each dependency
 being represented as an array reference, using the same structure as previous method.
 
 =cut
 
-sub provides {
+sub get_provides {
     croak "Not implemented method";
 }
 
-=head2 files()
+=head2 get_obsoletes()
+
+Returns the list of other packages obsoleted by this one.
+
+=cut
+
+sub get_provides {
+    croak "Not implemented method";
+}
+
+=head2 get_files()
 
 Returns the list of files contained in this package, each file being
 represented as an array reference, with the following informations:
@@ -189,31 +288,31 @@ For more conveniency, fields index are available as constant in this package.
 
 =cut
 
-sub files {
+sub get_files {
     croak "Not implemented method";
 }
 
-=head2 gpg_key()
+=head2 get_gpg_key()
 
 Returns the gpg key id of package signature.
 
 =cut
 
-sub gpg_key {
+sub get_gpg_key {
     croak "Not implemented method";
 }
 
-=head2 information()
+=head2 get_information()
 
 Returns formated informations about the package.
 
 =cut
 
-sub information {
+sub get_information {
     croak "Not implemented method";
 }
 
-=head2 changes()
+=head2 get_changes()
 
 Returns the list of changes for this package, each change being
 represented as an array reference, with the following informations:
@@ -239,17 +338,27 @@ For more conveniency, fields index are available as constant in this package.
 
 =cut
 
-sub changes {
+sub get_changes {
     croak "Not implemented method";
 }
 
-=head2 last_change()
+=head2 get_last_change()
 
 Returns the last change for this package, as as structure described before.
 
 =cut
 
-sub last_change {
+sub get_last_change {
+    croak "Not implemented method";
+}
+
+=head2 compare($package)
+
+Compares release ordering with other package.
+
+=cut
+
+sub compare {
     croak "Not implemented method";
 }
 
