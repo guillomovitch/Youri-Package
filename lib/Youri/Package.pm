@@ -128,16 +128,6 @@ sub canonical_name {
     croak "Not implemented method";
 }
 
-=head2 buildtime()
-
-Returns the time of last build, in number of second since epoch (like time()).
-
-=cut
-
-sub buildtime {
-    croak "Not implemented method";
-}
-
 =head2 requires()
 
 Returns the list of dependencies required by this package, each dependency
