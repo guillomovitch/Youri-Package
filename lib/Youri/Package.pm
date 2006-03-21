@@ -259,7 +259,7 @@ Returns the list of other packages obsoleted by this one.
 
 =cut
 
-sub get_provides {
+sub get_obsoletes {
     croak "Not implemented method";
 }
 
