@@ -149,6 +149,10 @@ being represented as an array reference, using the same structure as previous me
 
 Returns the list of other packages obsoleted by this one.
 
+=head2 get_conflicts()
+
+Returns the list of other packages conflicting with this one.
+
 =head2 get_files()
 
 Returns the list of files contained in this package, each file being
