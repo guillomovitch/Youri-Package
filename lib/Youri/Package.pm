@@ -72,6 +72,10 @@ Compares $version1 and $version2, and returns a numeric value:
 
 =back
 
+=head2 compare_ranges($range1, $range2)
+
+Compares $range1 and $range2, and returns a true value if they are compatible.
+
 =head1 INSTANCE METHODS
 
 =head2 get_name()
