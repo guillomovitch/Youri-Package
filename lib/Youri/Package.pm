@@ -58,6 +58,20 @@ sub _init {
 
 Returns a pattern matching a file for a package, using available informations.
 
+=head2 compare_versions($version1, $version2)
+
+Compares $version1 and $version2, and returns a numeric value:
+
+=over
+
+=item > 0 if $version1 > $version2
+
+=item 0 if $version1 = $version2
+
+=item < 0 if $version1 < $version2
+
+=back
+
 =head1 INSTANCE METHODS
 
 =head2 get_name()
