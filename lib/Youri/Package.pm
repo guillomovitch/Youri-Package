@@ -108,7 +108,15 @@ Returns the file containing this package.
 
 =head2 is_source()
 
-Returns true if this package is a source package;
+Returns true if this package is a source package.
+
+=head2 is_binary()
+
+Returns true if this package is a binary package.
+
+=head2 get_type()
+
+Returns the type (binary/source) of this package.
 
 =head2 get_age()
 
