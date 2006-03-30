@@ -134,6 +134,10 @@ Returns the packager of this package.
 
 Returns the name of the source package of this package.
 
+=head2 get_tag($tag)
+
+Returns the value of tag $tag of this package.
+
 =head2 get_canonical_name()
 
 Returns the canonical name of this package, shared by its multiple components,
