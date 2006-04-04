@@ -177,7 +177,8 @@ being represented as an array reference, using the same structure as previous me
 
 =head2 get_obsoletes()
 
-Returns the list of other packages obsoleted by this one.
+Returns the list of other packages obsoleted by this one, each one
+being represented as an array reference, using the same structure as previous method.
 
 =head2 get_conflicts()
 
