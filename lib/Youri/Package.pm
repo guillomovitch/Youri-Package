@@ -94,9 +94,13 @@ Returns the release of this package.
 
 Returns the architecture of this package.
 
+=head2 get_revision_name()
+
+Returns the revision name of this package (name-version-release).
+
 =head2 get_full_name()
 
-Returns the full name of this package (name-version-release).
+Returns the full name of this package (name-version-release.arch).
 
 =head2 get_file_name()
 
