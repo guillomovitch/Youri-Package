@@ -42,6 +42,8 @@ sub new {
         @_
     );
 
+    croak "Abstract class" if $class eq __PACKAGE__;
+
     my $self = bless {
     }, $class;
 
