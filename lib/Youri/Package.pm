@@ -37,12 +37,12 @@ Warning: do not call directly, call subclass constructor instead.
 =cut
 
 sub new {
-    my $class   = shift;
+    my $class = shift;
+    croak "Abstract class" if $class eq __PACKAGE__;
+
     my %options = (
         @_
     );
-
-    croak "Abstract class" if $class eq __PACKAGE__;
 
     my $self = bless {
     }, $class;
