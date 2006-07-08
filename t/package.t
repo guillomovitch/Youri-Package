@@ -9,7 +9,7 @@ use strict;
 my @classes = qw/
     Youri::Package::URPM
 /;
-my $file = 'cowsay-3.03-11mdv2007.0.noarch.rpm';
+my $file = 't/cowsay-3.03-11mdv2007.0.noarch.rpm';
 my $fake_file = 'foobar.rpm';
 plan(tests => 34 * scalar @classes);
 
