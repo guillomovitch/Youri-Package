@@ -8,10 +8,11 @@ use strict;
 
 my @classes = qw/
     Youri::Package::URPM
+    Youri::Package::RPM4
 /;
 my $file = 't/cowsay-3.03-11mdv2007.0.noarch.rpm';
 my $fake_file = 'foobar.rpm';
-plan(tests => 34 * scalar @classes);
+plan(tests => 35 * scalar @classes);
 
 foreach my $class (@classes) {
     load($class);
@@ -475,4 +476,5 @@ foreach my $class (@classes) {
         ],
         'last change'
     );
+    is($package->compare($package), 0, 'compare');
 }
