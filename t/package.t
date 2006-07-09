@@ -4,6 +4,7 @@
 use Test::More;
 use Test::Exception;
 use Youri::Utils;
+use File::Temp qw/tempdir/;
 use strict;
 
 my @classes = qw/
@@ -12,7 +13,7 @@ my @classes = qw/
 /;
 my $file = 't/cowsay-3.03-11mdv2007.0.noarch.rpm';
 my $fake_file = 'foobar.rpm';
-plan(tests => 35 * scalar @classes);
+plan(tests => 36 * scalar @classes);
 
 foreach my $class (@classes) {
     load($class);
@@ -477,4 +478,20 @@ foreach my $class (@classes) {
         'last change'
     );
     is($package->compare($package), 0, 'compare');
+}
+
+
+foreach my $class (@classes) {
+    load($class);
+
+    my $tempdir = tempdir(CLEANUP => 1);
+    system('cp', $file, $tempdir);
+    my $package = $class->new(file => "$tempdir/cowsay-3.03-11mdv2007.0.noarch.rpm");
+
+    $package->sign('Youri', 't/gpghome', 'Youri rulez');
+
+    my $resigned_package = $class->new(file => "$tempdir/cowsay-3.03-11mdv2007.0.noarch.rpm");
+    is($resigned_package->get_gpg_key(), '2333e817', 'get gpg key');
+
+    system('rm', '-fr', '--', $tempdir);
 }
