@@ -56,17 +56,4 @@ sub is_debug {
     return $self->get_name() =~ /-debug$/;
 }
 
-sub _parse_changelog_text {
-    my ($self, $text) = @_;
-
-    my @items = $text =~ /
-        ^
-        [-+ ] \s+ # list token
-        (.*)      # real text
-        $
-        /xmg;
-
-    return @items;
-}
-
 1;

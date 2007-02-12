@@ -245,7 +245,7 @@ sub get_provides {
     my $pattern = qr/^([^[]+)(?:\[(.+)\])?$/;
 
     return map {
-        $_ =~ $pattern;
+        $_ =~ /$pattern/;
         Youri::Package::Relationship->new($1, $2 && $2 ne '*' ?  $2 : undef)
     } $self->{_header}->provides();
 }
@@ -304,11 +304,7 @@ sub get_changes {
     my @texts = $self->{_header}->changelog_text();
 
     return map {
-        Youri::Package::Change->new(
-            $_,
-            shift @times,
-            [ $self->_parse_changelog_text(shift @texts) ]
-        )
+        Youri::Package::Change->new($_, shift @times, shift @texts)
     } $self->{_header}->changelog_name();
 }
 
@@ -321,11 +317,7 @@ sub get_last_change {
     my $time = ($self->{_header}->changelog_time())[0];
 
     return $text ?
-        Youri::Package::Change->new(
-            $name,
-            $time, 
-            [ $self->_parse_changelog_text($text) ]
-        ) :
+        Youri::Package::Change->new($name, $time, $text) :
         undef;
 }
 

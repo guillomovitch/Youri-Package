@@ -65,16 +65,34 @@ sub get_time {
 
 =head2 get_text()
 
+Returns the textual description of this change, as as string.
+
+=cut
+
+sub get_raw_text {
+    my ($self) = @_;
+    croak "Not a class method" unless ref $self;
+
+    return $self->[TEXT];
+}
+
+=head2 get_items()
+
 Returns the textual description of this change, as as array reference of
 individual changes.
 
 =cut
 
-sub get_text {
+sub get_text_items {
     my ($self) = @_;
     croak "Not a class method" unless ref $self;
 
-    return $self->[TEXT];
+    return $self->[TEXT] =~ /
+        ^
+        [-+ ] \s+ # list token
+        (.*)      # real text
+        $
+        /xmg;
 }
 
 1;

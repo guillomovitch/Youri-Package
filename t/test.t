@@ -391,13 +391,12 @@ my $changes = [
     ]
 ];
 
-my $last_change = [
-    'Guillaume Rousse <guillomovitch@mandriva.org> 3.03-11mdv2007.0',
-    1149847200,
-    [
-        '%mkrel',
-        'rpmbuildupdate aware'
-    ]
+my $last_change_author = 'Guillaume Rousse <guillomovitch@mandriva.org> 3.03-11mdv2007.0';
+my $last_change_time = 1149847200;
+my $last_change_raw_text = "- %mkrel\n- rpmbuildupdate aware",
+my $last_change_text_items = [
+    '%mkrel',
+    'rpmbuildupdate aware'
 ];
 
 my @classes = qw/
@@ -420,7 +419,7 @@ my ($new_rpm)  = Youri::Package::RPM::Generator->new(tags => {
     buildarch => 'noarch'
 })->get_binaries();
 my $fake_rpm = 'foobar.rpm';
-plan(tests => 47 * scalar @classes);
+plan(tests => 49 * scalar @classes);
 
 foreach my $class (@classes) {
     $class->require();
@@ -524,15 +523,25 @@ foreach my $class (@classes) {
     );
 
     # changelog
-    is_deeply(
-        [ $package->get_changes() ],
-        $changes,
-        'changelog'
+    is(
+        $package->get_last_change()->get_author(),
+        $last_change_author,
+        'last change has expected author'
+    );
+    is(
+        $package->get_last_change()->get_time(),
+        $last_change_time,
+        'last change has expected date'
+    );
+    is(
+        $package->get_last_change()->get_raw_text(),
+        $last_change_raw_text,
+        'last change has expected raw text'
     );
     is_deeply(
-        $package->get_last_change(),
-        $last_change,
-        'last change'
+        [ $package->get_last_change()->get_text_items() ],
+        $last_change_text_items,
+        'last change has expected text items'
     );
 
     # comparison tests

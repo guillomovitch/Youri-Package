@@ -332,11 +332,7 @@ sub get_changes {
     my @texts = $self->{_header}->tag('changelogtext');
 
     return map {
-        Youri::Package::Change->new(
-            $_,
-            shift @times,
-            [ $self->_parse_changelog_text(shift @texts) ]
-        )
+        Youri::Package::Change->new($_, shift @times, shift @texts)
     } $self->{_header}->tag('changelogname');
 }
 
@@ -349,11 +345,7 @@ sub get_last_change {
     my $time = ($self->{_header}->tag('changelogtime'))[0];
 
     return $text ?
-      Youri::Package::Change->new(
-            $name,
-            $time,
-            [ $self->_parse_changelog_text($text) ]
-        ) :
+        Youri::Package::Change->new($name, $time, $text) :
         undef;
 }
 
