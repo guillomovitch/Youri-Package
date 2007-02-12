@@ -1,4 +1,4 @@
-# $Id: /local/youri/soft/trunk/lib/Youri/Package/URPM.pm 2257 2006-07-05T09:22:47.088572Z guillaume  $
+# $Id$
 package Youri::Package::RPM;
 
 =head1 NAME
@@ -15,19 +15,58 @@ implementation.
 use strict;
 use warnings;
 use base 'Youri::Package';
+use Carp;
 
 sub get_pattern {
     my ($class, $name, $version, $release, $arch) = @_;
 
+    return $class->get_unquoted_pattern(
+        $name ? quotemeta($name) : undef,
+        $version ? quotemeta($version) : undef,
+        $release ? quotemeta($release) : undef,
+        $arch ? quotemeta($arch) : undef
+    );
+}
+
+sub get_unquoted_pattern {
+    my ($class, $name, $version, $release, $arch) = @_;
+
     return 
-        ($name ? quotemeta($name) : '[\w-]+' ).
+        ($name ? $name : '[\w-]+' ).
         '-' .
-        ($version ? quotemeta($version) : '[^-]+' ).
+        ($version ? $version : '[^-]+' ).
         '-' .
-        ($release ? quotemeta($release) : '[^-]+' ). 
+        ($release ? $release : '[^-]+' ). 
         '\.' .
-        ($arch ? quotemeta($arch) : '\w+' ).
+        ($arch ? $arch : '\w+' ).
         '\.rpm';
+}
+
+sub as_file {
+    my ($self) = @_;
+    croak "Not a class method" unless ref $self;
+
+    return $self->{_file};
+}
+
+sub is_debug {
+    my ($self) = @_;
+    croak "Not a class method" unless ref $self;
+
+    return $self->get_name() =~ /-debug$/;
+}
+
+sub _parse_changelog_text {
+    my ($self, $text) = @_;
+
+    my @items = $text =~ /
+        ^
+        [-+ ] \s+ # list token
+        (.*)      # real text
+        $
+        /xmg;
+
+    return @items;
 }
 
 1;

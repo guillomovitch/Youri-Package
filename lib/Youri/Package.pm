@@ -15,16 +15,7 @@ use Carp;
 use strict;
 use warnings;
 
-use constant DEPENDENCY_NAME  => 0;
-use constant DEPENDENCY_RANGE => 1;
-
-use constant FILE_NAME   => 0;
-use constant FILE_MODE   => 1;
-use constant FILE_MD5SUM => 2;
-
-use constant CHANGE_AUTHOR => 0;
-use constant CHANGE_TIME   => 1;
-use constant CHANGE_TEXT   => 2;
+our $VERSION = 0.1;
 
 =head1 CLASS METHODS
 
@@ -59,26 +50,46 @@ sub _init {
 =head2 get_pattern($name, $version, $release, $arch)
 
 Returns a pattern matching a file for a package, using available informations.
+All meta characters in arguments are quoted.
 
-=head2 compare_versions($version1, $version2)
+=head2 get_unquoted_pattern($name, $version, $release, $arch)
 
-Compares $version1 and $version2, and returns a numeric value:
+Returns a pattern matching a file for a package, using available informations.
+Meta characters in arguments are not quoted.
+
+=head2 compare_revisions($revision1, $revision2)
+
+Compares two revision tokens, and returns a numeric value:
 
 =over
 
-=item > 0 if $version1 > $version2
+=item positive if first revision is higher
 
-=item 0 if $version1 = $version2
+=item null if both revisions are equal
 
-=item < 0 if $version1 < $version2
+=item negative if first revision is lower
 
 =back
 
-=head2 compare_ranges($range1, $range2)
+=head2 check_ranges_compatibility($range1, $range2)
 
-Compares $range1 and $range2, and returns a true value if they are compatible.
+Returns a true value if given revision ranges are compatible.
 
 =head1 INSTANCE METHODS
+
+=head2 as_file()
+
+Returns the file corresponding to this package.
+
+=head2 as_string()
+
+Returns a string representation of this package.
+
+=head2 as_formated_string(I<format>)
+
+Returns a string representation of this package, formated according to
+I<format>. Format is a string, where each %{foo} token will get replaced by
+equivalent tag value.
 
 =head2 get_name()
 
@@ -92,25 +103,17 @@ Returns the version of this package.
 
 Returns the release of this package.
 
+=head2 get_revision()
+
+Returns the revision of this package.
+
 =head2 get_arch()
 
 Returns the architecture of this package.
 
-=head2 get_revision_name()
-
-Returns the revision name of this package (name-version-release).
-
-=head2 get_full_name()
-
-Returns the full name of this package (name-version-release.arch).
-
 =head2 get_file_name()
 
 Returns the file name of this package (name-version-release.arch.extension).
-
-=head2 get_file()
-
-Returns the file containing this package.
 
 =head2 is_source()
 
@@ -119,6 +122,10 @@ Returns true if this package is a source package.
 =head2 is_binary()
 
 Returns true if this package is a binary package.
+
+=head2 is_debug()
+
+Returns true if this package is a debug package.
 
 =head2 get_type()
 
@@ -159,59 +166,28 @@ usually the one from the source package.
 
 =head2 get_requires()
 
-Returns the list of dependencies required by this package, each dependency
-being represented as an array reference, with the following informations:
-
-=over
-
-=item B<name>
-
-Name of the dependency (index DEPENDENCY_NAME)
-
-=item B<range>
-
-Range of the dependency (index DEPENDENCY_RANGE)
-
-=back
-
-For more conveniency, fields index are available as constant in this package.
+Returns the list of dependencies required by this package, as an array of
+L<Youri::Package::Relationship> objects.
 
 =head2 get_provides()
 
-Returns the list of dependencies provided by this package, each dependency
-being represented as an array reference, using the same structure as previous method.
+Returns the list of dependencies provided by this package, as an array of
+L<Youri::Package::Relationship> objects.
 
 =head2 get_obsoletes()
 
-Returns the list of other packages obsoleted by this one, each one
-being represented as an array reference, using the same structure as previous method.
+Returns the list of other packages obsoleted by this one, as an array of
+L<Youri::Package::Relationship> objects.
 
 =head2 get_conflicts()
 
-Returns the list of other packages conflicting with this one.
+Returns the list of other packages conflicting with this one, as an array of
+L<Youri::Package::Relationship> objects.
 
 =head2 get_files()
 
-Returns the list of files contained in this package, each file being
-represented as an array reference, with the following informations:
-
-=over
-
-=item B<name>
-
-Name of the file (index FILE_NAME).
-
-=item B<mode>
-
-Mode of the file (index FILE_MODE).
-
-=item B<md5sum>
-
-Md5sum of the file (index FILE_MD5SUM).
-
-=back
-
-For more conveniency, fields index are available as constant in this package.
+Returns the list of files contained in this package, as an array of
+L<Youri::Package::File> objects.
 
 =head2 get_gpg_key()
 
@@ -223,27 +199,8 @@ Returns formated informations about the package.
 
 =head2 get_changes()
 
-Returns the list of changes for this package, each change being
-represented as an array reference, with the following informations:
-
-=over
-
-=item B<author>
-
-Author of the change (index CHANGE_AUTHOR).
-
-=item B<time>
-
-Time of the change (index CHANGE_TIME).
-
-=item B<text>
-
-Textual description of the change, as as array reference of individual changes
-(index CHANGE_TEXT).
-
-=back
-
-For more conveniency, fields index are available as constant in this package.
+Returns the list of changes for this package, as an array of
+L<Youri::Package::Change> objects.
 
 =head2 get_last_change()
 
@@ -251,7 +208,22 @@ Returns the last change for this package, as as structure described before.
 
 =head2 compare($package)
 
-Compares release ordering with other package.
+Compares ordering with other package, according to their corresponding revision
+tokens, and returns a numeric value:
+
+=over
+
+=item positive if this package is newer
+
+=item null if both have same revision
+
+=item negative if this package is older
+
+=back
+
+=head2 satisfy_range($range)
+
+Returns a true value if this package revision satisfies given revision range.
 
 =head2 sign($name, $path, $passphrase)
 
@@ -272,5 +244,58 @@ Copyright (C) 2002-2006, YOURI project
 This program is free software; you can redistribute it and/or modify it under the same terms as Perl itself.
 
 =cut
+
+sub get_file {
+    my ($self) = @_;
+    carp "Deprecated method, use as_file now";
+
+    return $self->as_file();
+}
+
+sub get_full_name {
+    my ($self) = @_;
+    carp "Deprecated method, use as_string now";
+
+    return $self->as_string();
+}
+
+sub compare_versions {
+    my ($self, $version1, $version2) = @_;
+    carp "Deprecated method, use compare_revisions now";
+
+    return $self->compare_revisions($version1, $version2);
+}
+
+sub compare_ranges {
+    my ($self, $range1, $range2) = @_;
+    carp "Deprecated method, use check_ranges_compatibility now";
+
+    return $self->check_ranges_compatibility($range1, $range2);
+}
+
+sub get_revision_name {
+    my ($self) = @_;
+    carp "Deprecated method, use as_formated_string('%{name}-%{version}-%{release}') now";
+
+    return $self->as_formated_string('%{name}-%{version}-%{release}');
+}
+
+sub get_information {
+    my ($self) = @_;
+    carp "Deprecated method, use as_formated_string() with proper format string now";
+
+    return $self->as_formated_string(<<EOF);
+Name        : %-27{NAME}  Relocations: %|PREFIXES?{[%{PREFIXES} ]}:{(not relocatable)}|
+Version     : %-27{VERSION}       Vendor: %{VENDOR}
+Release     : %-27{RELEASE}   Build Date: %{BUILDTIME:date}
+Install Date: %|INSTALLTIME?{%-27{INSTALLTIME:date}}:{(not installed)         }|      Build Host: %{BUILDHOST}
+Group       : %-27{GROUP}   Source RPM: %{SOURCERPM}
+Size        : %-27{SIZE}%|LICENSE?{      License: %{LICENSE}}|
+Signature   : %|DSAHEADER?{%{DSAHEADER:pgpsig}}:{%|RSAHEADER?{%{RSAHEADER:pgpsig}}:{%|SIGGPG?{%{SIGGPG:pgpsig}}:{%|SIGPGP?{%{SIGPGP:pgpsig}}:{(none)}|}|}|}|
+%|PACKAGER?{Packager    : %{PACKAGER}\n}|%|URL?{URL         : %{URL}\n}|Summary     : %{SUMMARY}
+Description :\n%{DESCRIPTION}
+EOF
+}
+
 
 1;
