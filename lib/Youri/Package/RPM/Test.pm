@@ -42,6 +42,12 @@ my @tags = qw/
 
 my %tags = map { $_ => 1 } @tags;
 
+sub check_ranges_compatibility {
+    my ($class, $range1, $range2) = @_;
+
+    return URPM::ranges_overlap($range1, $range2);
+}
+
 =head1 CLASS METHODS
 
 =head2 new(%args)
@@ -297,6 +303,16 @@ sub compare {
     croak "Not a class method" unless ref $self;
 
     return URPM::rpmvercmp($self->get_revision(), $package->get_revision());
+}
+
+sub satisfy_range {
+    my ($self, $range) = @_;
+    croak "Not a class method" unless ref $self;
+
+    return $self->check_ranges_compatibility(
+        '== ' . $self->get_revision(),
+        $range
+    );
 }
 
 sub AUTOLOAD {
