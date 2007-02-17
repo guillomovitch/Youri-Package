@@ -101,8 +101,8 @@ sub _depsense2flag {
 
 sub check_ranges_compatibility {
     my ($class, $range1, $range2) = @_;
-    my @deps1 = split(/ /, $range1);
-    my @deps2 = split(/ /, $range2);
+    my @deps1 = ('', split(/ /, $range1));
+    my @deps2 = ('', split(/ /, $range2));
     $deps1[1] = _depsense2flag($range1); 
     $deps2[1] = _depsense2flag($range2); 
     my $dep1 = RPM4::Header::Dependencies->new(
