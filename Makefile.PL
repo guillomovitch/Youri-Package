@@ -6,9 +6,11 @@ WriteMakefile(
     VERSION_FROM => 'lib/Youri/Package.pm',
     AUTHOR       => 'Youri project <youri@zarb.org>',
     PREREQ_PM  => {
-        'Test::Exception' => 0,
-        'Expect'          => 0,
-        'RPM4'            => 0,
-        'URPM'            => 0
+        'Test::Exception'                => 0,
+        'Text::Template'                 => 0,
+        'Youri::Package::RPM::Generator' => 0,
+        'Expect'                         => 0,
+        'RPM4'                           => 0,
+        'URPM'                           => 0
     }
 );
