@@ -272,14 +272,24 @@ sub get_changes {
     my ($self) = @_;
     croak "Not a class method" unless ref $self;
 
-    return $self->{_changes} ? @{$self->{_changes}} : ();
+    return $self->{_changes} ?
+        map {
+            Youri::Package::Change->new($_->[0], $_->[1], $_->[2])
+        } @{$self->{_changes}} :
+        ();
 }
 
 sub get_last_change {
     my ($self) = @_;
     croak "Not a class method" unless ref $self;
 
-    return $self->{_changes} ? $self->{_changes}->[0] : undef;
+    return $self->{_changes} ?
+        Youri::Package::Change->new(
+            $self->{_changes}->[0]->[0],
+            $self->{_changes}->[0]->[1],
+            $self->{_changes}->[0]->[2]
+        ) :
+        undef;
 }
 
 sub compare {
