@@ -21,4 +21,5 @@ if ($@) {
     );
 }
 
+Test::Perl::Critic->import();
 all_critic_ok();
