@@ -63,7 +63,7 @@ sub get_time {
     return $self->[TIME];
 }
 
-=head2 get_text()
+=head2 get_raw_text()
 
 Returns the textual description of this change, as as string.
 
@@ -76,7 +76,7 @@ sub get_raw_text {
     return $self->[TEXT];
 }
 
-=head2 get_items()
+=head2 get_text_items()
 
 Returns the textual description of this change, as as array reference of
 individual changes.
