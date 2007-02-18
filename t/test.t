@@ -529,7 +529,10 @@ foreach my $class (@classes) {
     ok($package->satisfy_range('< 3.03-12mdv2007.0'), 'range test');
 
     SKIP: {
-        skip "not implemented yet", 3 if $class eq 'Youri::Package::RPM::Test';
+        skip "not implemented yet", 3
+            if $class eq 'Youri::Package::RPM::Test';
+        skip "rpm4 has no error control for signature", 3
+            if $class eq 'Youri::Package::RPM::RPM4';
 
         # signature test
         system('cp', $file, $temp_dir);

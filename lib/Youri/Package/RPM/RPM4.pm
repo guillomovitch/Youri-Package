@@ -401,7 +401,8 @@ sub sign {
     );
     $sign->{passphrase} = $passphrase;
 
-    $sign->rpmssign($self->{_file})
+    # RPM4 sux, there is no error handling available here
+    $sign->rpmssign($self->{_file});
 }
 
 sub extract {
