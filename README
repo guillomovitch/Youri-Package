@@ -5,8 +5,7 @@ Packaging management system abstraction layer
 
 Description
 -----------
-This module generates rpm packages from a spec file template, for testing
-purposes.
+This class provides an uniform view over various kind of packages.
 
 Installation
 ------------
