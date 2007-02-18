@@ -349,51 +349,14 @@ my $changes = [
     [
         'Guillaume Rousse <guillomovitch@mandriva.org> 3.03-11mdv2007.0',
         1149847200,
-        [
-            '%mkrel',
-            'rpmbuildupdate aware'
-        ]
-    ],
-    [
-        'Guillaume Rousse <guillomovitch@mandriva.org> 3.03-10mdk ',
-        1117879200,
-        [
-            'fix man page (fix #16291)'
-        ]
-    ],
-    [
-        'Guillaume Rousse <guillomovitch@mandrake.org> 3.03-9mdk ',
-        1090058400,
-        [
-            'hurry businesman compliant (aka two new wonderful cows)'
-        ]
-    ],
-    [
-        'Guillaume Rousse <guillomovitch@mandrake.org> 3.03-8mdk ',
-        1089540000,
-        [
-            'apologies to the girafes (with one only f)'
-        ]
-    ],
-    [
-        'Guillaume Rousse <guillomovitch@mandrake.org> 3.03-7mdk ',
-          1086429600,
-        [
-            '#mandrakefr compliant (aka four new additional cows)'
-        ]
-    ],
-    [
-        'Guillaume Rousse <guillomovitch@linux-mandrake.com> 3.03-6mdk',
-        1061460000,
-        [
-            'save.the.world patch'
-        ]
+        "- %mkrel\n- rpmbuildupdate aware"
     ]
 ];
 
-my $last_change_author = 'Guillaume Rousse <guillomovitch@mandriva.org> 3.03-11mdv2007.0';
-my $last_change_time = 1149847200;
-my $last_change_raw_text = "- %mkrel\n- rpmbuildupdate aware",
+my $last_change_author     =
+    'Guillaume Rousse <guillomovitch@mandriva.org> 3.03-11mdv2007.0';
+my $last_change_time       = 1149847200;
+my $last_change_raw_text   = "- %mkrel\n- rpmbuildupdate aware",
 my $last_change_text_items = [
     '%mkrel',
     'rpmbuildupdate aware'
@@ -455,7 +418,11 @@ foreach my $class (@classes) {
             obsoletes => $obsoletes,
             conflicts => $conflicts,
             files     => $files,
-            changes   => $changes
+            changes   => [[
+                'Guillaume Rousse <guillomovitch@mandriva.org> 3.03-11mdv2007.0',
+                1149847200,
+                "- %mkrel\n- rpmbuildupdate aware"
+            ]]
         );
     } else {
         $package = $class->new(file => $file);
