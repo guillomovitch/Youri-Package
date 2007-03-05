@@ -7,10 +7,22 @@ WriteMakefile(
     AUTHOR       => 'Youri project <youri@zarb.org>',
     PREREQ_PM  => {
         'Test::Exception'                => 0,
-        'Text::Template'                 => 0,
         'Youri::Package::RPM::Generator' => 0,
         'Expect'                         => 0,
         'RPM4'                           => 0,
         'URPM'                           => 0
     }
 );
+
+sub MY::postamble {
+   return <<'EOF';
+.PHONY: svntag
+SVNPATH = svn+ssh://youri.zarb.org/home/projects/youri/svn/soft/Package
+
+svntag:
+	svn copy -m 'new release $(VERSION)'\
+		$(SVNPATH)/trunk \
+		$(SVNPATH)/tags/release-$(VERSION)
+
+EOF
+}
