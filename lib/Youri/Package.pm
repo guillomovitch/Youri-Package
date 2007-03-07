@@ -14,8 +14,7 @@ This abstract class defines Youri::Package interface.
 use Carp;
 use strict;
 use warnings;
-
-our $VERSION = 0.1.0;
+use version; our $VERSION = qv('0.1.0');
 
 =head1 CLASS METHODS
 
@@ -243,14 +242,24 @@ Copyright (C) 2002-2006, YOURI project
 
 This program is free software; you can redistribute it and/or modify it under the same terms as Perl itself.
 
+=head2 get_file()
+
+Deprecated in favor of as_file().
+
 =cut
 
 sub get_file {
     my ($self) = @_;
-    carp "Deprecated method, use as_file now";
+    carp "Deprecated method, use as_file() now";
 
     return $self->as_file();
 }
+
+=head2 get_full_name()
+
+Deprecated in favor of as_string().
+
+=cut
 
 sub get_full_name {
     my ($self) = @_;
@@ -259,12 +268,24 @@ sub get_full_name {
     return $self->as_string();
 }
 
+=head2 compare_versions($version1, $version2)
+
+Deprecated in favor of compare_revisions().
+
+=cut
+
 sub compare_versions {
     my ($self, $version1, $version2) = @_;
     carp "Deprecated method, use compare_revisions now";
 
     return $self->compare_revisions($version1, $version2);
 }
+
+=head2 compare_ranges($version1, $version2)
+
+Deprecated in favor of check_ranges_compatibility().
+
+=cut
 
 sub compare_ranges {
     my ($self, $range1, $range2) = @_;
@@ -273,12 +294,24 @@ sub compare_ranges {
     return $self->check_ranges_compatibility($range1, $range2);
 }
 
+=head2 get_revision_name()
+
+Deprecated in favor of as_formated_string() with proper format string.
+
+=cut
+
 sub get_revision_name {
     my ($self) = @_;
     carp "Deprecated method, use as_formated_string('%{name}-%{version}-%{release}') now";
 
     return $self->as_formated_string('%{name}-%{version}-%{release}');
 }
+
+=head2 get_information()
+
+Deprecated in favor of as_formated_string() with proper pattern.
+
+=cut
 
 sub get_information {
     my ($self) = @_;
