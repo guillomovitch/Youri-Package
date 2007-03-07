@@ -3,7 +3,6 @@
 
 use Test::More;
 use Test::Exception;
-use Youri::Utils;
 use File::Temp qw/tempdir/;
 use File::Basename;
 use UNIVERSAL::require;
