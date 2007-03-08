@@ -196,8 +196,8 @@ sub get_canonical_name {
     return $self->{_tags}->{name}
         if $self->{_tags}->{arch} eq 'src';
 
-    # otherwise return undef if sourcerpm is not defined
-    return
+    # otherwise return name if sourcerpm is not defined
+    return $self->{_tags}->{name}
        if ! $self->{_tags}->{sourcerpm};
 
     # otherwise source package name
