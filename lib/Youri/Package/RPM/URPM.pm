@@ -369,6 +369,7 @@ sub sign {
 
     my $command =
         'LC_ALL=C rpm --resign ' . $self->{_file} .
+        ' --define "_signature gpg"' .
         ' --define "_gpg_name ' . $name . '"' .
         ' --define "_gpg_path ' . $path . '"';
     my $expect = Expect->spawn($command)
