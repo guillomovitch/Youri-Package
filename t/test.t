@@ -539,7 +539,7 @@ foreach my $class (@classes) {
 
         dies_ok {
             $package->sign('Youri', "$dir/gpghome", 'Youri sux')
-        } 'signing with wong key';
+        } 'signing with wrong key';
 
         lives_ok {
             $package->sign('Youri', "$dir/gpghome", 'Youri rulez')
