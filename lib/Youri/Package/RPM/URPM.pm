@@ -377,7 +377,8 @@ sub sign {
     my @log;
     $expect->log_stdout(0);
     $expect->log_file(sub { push(@log, $_[0]); });
-    $expect->expect(20, -re => 'Enter pass phrase:');
+    $expect->expect(10, 'Enter pass phrase:')
+        or croak "Unexpected output: $log[-1]\n";
     $expect->send("$passphrase\n");
 
     $expect->soft_close();
