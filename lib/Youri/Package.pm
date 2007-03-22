@@ -14,7 +14,7 @@ This abstract class defines Youri::Package interface.
 use Carp;
 use strict;
 use warnings;
-use version; our $VERSION = qv('0.1.0');
+use version; our $VERSION = qv('0.1.1');
 
 =head1 CLASS METHODS
 
