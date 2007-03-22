@@ -537,9 +537,9 @@ foreach my $class (@classes) {
         system('cp', $file, $temp_dir);
         $package = $class->new(file => "$temp_dir/$rpm");
 
-        dies_ok {
+        throws_ok {
             $package->sign('Youri', "$dir/gpghome", 'Youri sux')
-        } 'signing with wrong key';
+        } qr/^Signature error:/, 'signing with wrong key';
 
         lives_ok {
             $package->sign('Youri', "$dir/gpghome", 'Youri rulez')
