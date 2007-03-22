@@ -10,7 +10,8 @@ WriteMakefile(
         'Youri::Package::RPM::Generator' => 0,
         'Expect'                         => 0,
         'RPM4'                           => 0,
-        'URPM'                           => 0
+        'URPM'                           => 0,
+        'UNIVERSAL::require'             => 0
     }
 );
 
