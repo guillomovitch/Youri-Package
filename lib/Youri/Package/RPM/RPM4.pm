@@ -234,6 +234,14 @@ sub get_canonical_name {
     return $1;
 }
 
+sub get_canonical_revision {
+    my ($self) = @_;
+    croak "Not a class method" unless ref $self;
+
+    $self->{_header}->sourcerpmname() =~ /^\S+-([^-]+-[^-])+\.src\.rpm$/;
+    return $1;
+}
+
 sub get_tag {
     my ($self, $tag) = @_;
     croak "Not a class method" unless ref $self;

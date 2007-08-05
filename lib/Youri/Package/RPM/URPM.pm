@@ -219,6 +219,18 @@ sub get_canonical_name {
     }
 }
 
+sub get_canonical_revision {
+    my ($self) = @_;
+    croak "Not a class method" unless ref $self;
+
+    if ($self->{_header}->arch() eq 'src') {
+       return $self->{_header}->get_revision();
+    } else {
+       $self->{_header}->sourcerpm() =~ /^\S+-([^-]+-[^-]+)\.src\.rpm$/;
+       return $1;
+    }
+}
+
 sub get_tag {
     my ($self, $tag) = @_;
     croak "Not a class method" unless ref $self;
