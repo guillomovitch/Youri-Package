@@ -3,7 +3,7 @@ package Youri::Package::RPM::RPM4;
 
 =head1 NAME
 
-Youri::Package::RPM::RPM4 - URPM-based rpm package implementation
+Youri::Package::RPM::RPM4 - RPM4-based rpm package implementation
 
 =head1 DESCRIPTION
 
@@ -115,6 +115,37 @@ sub check_ranges_compatibility {
     );
 
     return $dep1->overlap($dep2);
+}
+
+sub set_verbosity {
+    return RPM4::setverbosity($_[1])
+}
+
+sub install_srpm {
+    return RPM4::installsrpm($_[1]);
+}
+
+sub add_macro {
+    return RPM4::add_macro($_[1]);
+}
+
+sub expand_macro {
+    return RPM4::expand($_[1]);
+}
+
+sub new_header {
+    shift @_;
+    return RPM4::Header->new(@_);
+}
+
+sub new_spec {
+    shift @_;
+    return RPM4::Spec->new(@_);
+}
+
+sub new_transaction {
+    shift @_;
+    return RPM4::Transaction->new(@_);
 }
 
 sub get_name {
