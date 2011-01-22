@@ -19,6 +19,73 @@ use version; our $VERSION = qv('0.2.0');
 use Carp;
 use UNIVERSAL::require;
 
+=head2 get_wrapper_class
+
+Returns the name of a class corresponding to currently available perl RPM
+bindings:
+
+=over
+
+=item C<Youri::Package::RPM::RPM4> if RPM4 is available
+
+=item C<Youri::Package::RPM::RPM> if RPM is available
+
+=item C<Youri::Package::RPM::URPM> if URPM is available
+
+=back
+
+This allow to write binding-independant code, by using
+methods of this class instead of using bindings-specific
+functions.
+
+=over
+
+=item set_verbosity
+
+=item install_srpm
+
+=item add_macro
+
+=item expand_macro
+
+=item new_header
+
+=item new_spec
+
+=item new_transaction
+
+=back
+
+=head2 set_verbosity
+
+This method calls underlying binding corresponding function.
+
+=head2 install_srpm
+
+This method calls underlying binding corresponding function.
+
+=head2 add_macro
+
+This method calls underlying binding corresponding function.
+
+=head2 expand_macro
+
+This method calls underlying binding corresponding function.
+
+=head2 new_header
+
+This method calls the constructor of the underlying binding Header class.
+
+=head2 new_spec
+
+This method calls the constructor of the underlying binding Spec class.
+
+=head2 new_transaction
+
+This method calls the constructor of the underlying binding Transaction class.
+
+=cut
+
 sub get_wrapper_class {
     if (RPM4->require()) {
         Youri::Package::RPM::RPM4->require();
