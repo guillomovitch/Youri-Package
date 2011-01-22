@@ -291,7 +291,9 @@ sub get_files {
     croak "Not a class method" unless ref $self;
 
     my @modes   = $self->{_header}->files_mode();
-    my @digests = $self->{_header}->files_digest();
+    my @digests = version->parse($URPM::VERSION) < version->parse("4.0.0") ?
+        $self->{_header}->files_md5sum() :
+        $self->{_header}->files_digest() ;
 
     return map {
         Youri::Package::File->new($_, shift @modes, shift @digests)
