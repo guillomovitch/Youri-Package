@@ -163,6 +163,11 @@ Returns the value of tag $tag of this package.
 Returns the canonical name of this package, shared by its multiple components,
 usually the one from the source package.
 
+=head2 get_canonical_revision()
+
+Returns the canonical revision of this package, shared by its multiple components,
+usually the one from the source package.
+
 =head2 get_requires()
 
 Returns the list of dependencies required by this package, as an array of
