@@ -365,8 +365,8 @@ my @classes = qw/
     Youri::Package::RPM::URPM
     Youri::Package::RPM::Test
 /;
-push @classes, 'Youri::Package::RPM::URPM4' if RPM4->require();
-push @classes, 'Youri::Package::RPM::URPM' if RPM->require();
+push @classes, 'Youri::Package::RPM::RPM4' if RPM4->require();
+push @classes, 'Youri::Package::RPM::RPM' if RPM->require();
 
 my $dir      = dirname($0);
 my $rpm      = 'cowsay-3.03-11mdv2007.0.noarch.rpm';
