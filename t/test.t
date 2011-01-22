@@ -363,9 +363,11 @@ my $last_change_text_items = [
 
 my @classes = qw/
     Youri::Package::RPM::URPM
-    Youri::Package::RPM::RPM4
     Youri::Package::RPM::Test
 /;
+push @classes, 'Youri::Package::RPM::URPM4' if RPM4->require();
+push @classes, 'Youri::Package::RPM::URPM' if RPM->require();
+
 my $dir      = dirname($0);
 my $rpm      = 'cowsay-3.03-11mdv2007.0.noarch.rpm';
 my ($old_rpm)  = Youri::Package::RPM::Generator->new(tags => {
@@ -532,6 +534,8 @@ foreach my $class (@classes) {
             if $class eq 'Youri::Package::RPM::Test';
         skip "rpm4 has no error control for signature", 3
             if $class eq 'Youri::Package::RPM::RPM4';
+        skip "rpm has no error control for signature", 3
+            if $class eq 'Youri::Package::RPM::RPM';
 
         # signature test
         system('cp', $file, $temp_dir);
