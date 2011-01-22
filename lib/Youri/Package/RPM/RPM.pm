@@ -141,7 +141,7 @@ sub install_srpm {
 # with a defined prototype morevoer
 {
     no warnings 'redefine';
-    sub add_macro($) {
+    sub add_macro($) { ## no critic (SubroutinePrototypes)
         return RPM::add_macro($_[1]);
     }
 }
