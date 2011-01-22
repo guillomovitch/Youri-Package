@@ -343,10 +343,12 @@ sub get_files {
             for my $i (0..15) {
                 $umode |= $smode & (1 << $i);
             }
+            my $md5 = $files->md5();
+            $md5 = '' if !$md5 || $md5 eq '00000000000000000000000000000000';
             push(@fileslist, Youri::Package::File->new(
                 $files->filename(),
                 $umode,
-                $files->md5() || ''
+                $md5
             ));
         }
     }
