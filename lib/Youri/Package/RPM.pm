@@ -16,6 +16,26 @@ use strict;
 use warnings;
 use base 'Youri::Package';
 use Carp;
+use UNIVERSAL::require;
+
+sub get_wrapper_class {
+    if (RPM4->require()) {
+        Youri::Package::RPM::RPM4->require();
+        return 'Youri::Package::RPM::RPM4';
+    }
+
+    if (RPM->require()) {
+        Youri::Package::RPM::RPM->require();
+        return 'Youri::Package::RPM::RPM';
+    }
+
+    if (URPM->require()) {
+        Youri::Package::RPM::URPM->require();
+        return 'Youri::Package::RPM::URPM';
+    }
+
+    croak "No RPM bindings available";
+}
 
 sub get_pattern {
     my ($class, $name, $version, $release, $arch) = @_;
