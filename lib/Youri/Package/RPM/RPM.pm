@@ -18,6 +18,7 @@ use RPM;
 use RPM::Constant;
 use RPM::Header;
 use RPM::Sign;
+use File::Path qw/remove_tree/;
 use File::Spec;
 use Scalar::Util qw/refaddr blessed/;
 use Youri::Package::Relationship;
@@ -134,7 +135,14 @@ sub set_verbosity {
 }
 
 sub install_srpm {
-    return RPM::installsrpm($_[1]);
+    my @results = RPM::installsrpm($_[1]);
+    # RPM create all directories, instead of just the needed ones
+    remove_tree(
+        RPM::expand_macro('%_builddir'),
+        RPM::expand_macro('%_rpmdir'),
+        RPM::expand_macro('%_srcrpmdir'),
+    );
+    return @results;
 }
 
 # RPM unfortunatly export this subroutine as a function
