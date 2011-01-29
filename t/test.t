@@ -388,7 +388,7 @@ plan(tests => 49 * scalar @classes);
 foreach my $class (@classes) {
     $class->require();
 
-    my $temp_dir  = tempdir(CLEANUP => 1);
+    my $temp_dir  = tempdir(CLEANUP => $ENV{TEST_DEBUG} ? 0 : 1);
     my $file      = "$dir/$rpm";
     my $old_file  = "$old_rpm";
     my $new_file  = "$new_rpm";
