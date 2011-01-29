@@ -15,7 +15,7 @@ implementation.
 use strict;
 use warnings;
 use base 'Youri::Package';
-use version; our $VERSION = qv('0.2.1');
+use version; our $VERSION = qv('0.2.0');
 use Carp;
 use UNIVERSAL::require;
 
