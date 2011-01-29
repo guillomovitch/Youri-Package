@@ -33,7 +33,7 @@ use overload
 # patch RPM::Header on the fly, for sake of compatibility
 *RPM::Header::queryformat = sub {
     my $self = shift;
-    return $self->(@_);
+    return $self->tagformat(@_);
 };
 
 =head1 CLASS METHODS
