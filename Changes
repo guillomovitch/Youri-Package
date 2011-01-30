@@ -1,5 +1,9 @@
+2011-01-30 Guillaume Rousse <guillomovitch@zarb.org> 0.2.2
+	* Youri::Package::RPM::RPM::RPM:
+	    - fix tagformat wrapper method
+
 2011-01-29 Guillaume Rousse <guillomovitch@zarb.org> 0.2.1
-	* Youri::Package::RPM::RPM::RPM
+	* Youri::Package::RPM::RPM::RPM:
 	    - only create SOURCES and SPECS directories when importing a
 	      source package, for consistency with RPM4
 
