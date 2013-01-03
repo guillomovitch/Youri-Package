@@ -5,6 +5,7 @@ use Test::More;
 use Test::Exception;
 use File::Temp qw/tempdir/;
 use File::Basename;
+use File::Which;
 use UNIVERSAL::require;
 use Youri::Package::RPM::Generator;
 use strict;
@@ -536,6 +537,8 @@ foreach my $class (@classes) {
             if $class eq 'Youri::Package::RPM::RPM4';
         skip "rpm has no error control for signature", 3
             if $class eq 'Youri::Package::RPM::RPM';
+        skip "rpmsign not available", 3
+            if ! which("rpmsign");
 
         # signature test
         system('cp', $file, $temp_dir);
