@@ -19,7 +19,7 @@ if (!RPM4->require()) {
 }
 
 if (!RPM->require()) {
-    @modules = grep { ! /RPM::RPM4/ } @modules;
+    @modules = grep { ! /RPM::RPM$/ } @modules;
 }
 
 plan tests => scalar @modules;
