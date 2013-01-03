@@ -14,15 +14,16 @@ purposes.
 
 use strict;
 use warnings;
-use File::Basename;
-use Carp;
-use URPM;
 use base 'Youri::Package::RPM';
 use feature qw(switch);
 use overload
     '""'     => 'as_string',
     '0+'     => '_to_number',
     fallback => 1;
+
+use Carp;
+use File::Basename;
+use URPM;
 
 our $AUTOLOAD;
 

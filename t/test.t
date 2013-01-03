@@ -1,15 +1,17 @@
 #!/usr/bin/perl
 # $Id$
 
-use Test::More;
-use Test::Exception;
-use File::Temp qw/tempdir/;
+use strict;
+
 use File::Basename;
 use File::Copy;
+use File::Temp qw/tempdir/;
 use File::Which;
+use Test::More;
+use Test::Exception;
 use UNIVERSAL::require;
+
 use Youri::Package::RPM::Generator;
-use strict;
 
 # expected results
 my $requires = [

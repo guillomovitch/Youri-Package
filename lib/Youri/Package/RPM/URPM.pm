@@ -16,20 +16,22 @@ interface.
 
 use strict;
 use warnings;
-use Carp;
-use URPM;
-use File::Spec;
-use English qw(-no_match_vars);
-use Expect;
-use Scalar::Util qw/refaddr blessed/;
-use Youri::Package::Relationship;
-use Youri::Package::File;
-use Youri::Package::Change;
 use base 'Youri::Package::RPM';
 use overload
     '""'     => 'as_string',
     '0+'     => '_to_number',
     fallback => 1;
+
+use Carp;
+use English qw(-no_match_vars);
+use Expect;
+use File::Spec;
+use Scalar::Util qw/refaddr blessed/;
+use URPM;
+
+use Youri::Package::Change;
+use Youri::Package::File;
+use Youri::Package::Relationship;
 
 =head1 CLASS METHODS
 
