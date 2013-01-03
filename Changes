@@ -1,4 +1,5 @@
 2013-01-03 Guillaume Rousse <guillomovitch@zarb.org> 0.2.3
+	* minor code cleanups
 	* Youri::Package::RPM::URPM:
 	    - revert changes introduced to support mandriva-specific URPM
 	      changes
