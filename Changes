@@ -1,3 +1,8 @@
+2013-01-03 Guillaume Rousse <guillomovitch@zarb.org> 0.2.3
+	* Youri::Package::RPM::URPM:
+	    - revert changes introduced to support mandriva-specific URPM
+	      changes
+
 2011-01-30 Guillaume Rousse <guillomovitch@zarb.org> 0.2.2
 	* Youri::Package::RPM::RPM::RPM:
 	    - fix tagformat wrapper method
