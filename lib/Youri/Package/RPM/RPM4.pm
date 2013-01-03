@@ -343,7 +343,7 @@ sub get_files {
             my $smode = $files->mode();
             my $umode;
             for my $i (0..15) {
-                $umode |= $smode & (1 << $i);
+                $umode |= $smode & (1 << $i); ## no critic (ProhibitBitwise)
             }
             my $md5 = $files->md5();
             $md5 = '' if !$md5 || $md5 eq '00000000000000000000000000000000';

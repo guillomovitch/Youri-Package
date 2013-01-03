@@ -89,6 +89,7 @@ sub is_directory {
     my ($self) = @_;
     croak "Not a class method" unless ref $self;
 
+    ## no critic (ProhibitBitwise)
     return ($self->[MODE] & MODE_MASK) == MODE_DIR;
 }
 
