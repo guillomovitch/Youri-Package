@@ -11,10 +11,11 @@ This abstract class defines Youri::Package interface.
 
 =cut
 
-use Carp;
 use strict;
 use warnings;
 use version; our $VERSION = qv('0.2.2');
+
+use Carp;
 
 =head1 CLASS METHODS
 
