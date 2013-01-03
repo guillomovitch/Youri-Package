@@ -5,6 +5,7 @@ use Test::More;
 use Test::Exception;
 use File::Temp qw/tempdir/;
 use File::Basename;
+use File::Copy;
 use File::Which;
 use UNIVERSAL::require;
 use Youri::Package::RPM::Generator;
@@ -541,7 +542,7 @@ foreach my $class (@classes) {
             if ! which("rpmsign");
 
         # signature test
-        system('cp', $file, $temp_dir);
+        copy($file, $temp_dir);
         $package = $class->new(file => "$temp_dir/$rpm");
 
         throws_ok {
