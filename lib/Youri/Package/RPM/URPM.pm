@@ -19,6 +19,7 @@ use warnings;
 use Carp;
 use URPM;
 use File::Spec;
+use English qw(-no_match_vars);
 use Expect;
 use Scalar::Util qw/refaddr blessed/;
 use Youri::Package::Relationship;
@@ -385,7 +386,7 @@ sub sign {
         ' --define "_gpg_name ' . $name . '"' .
         ' --define "_gpg_path ' . $path . '"';
     my $expect = Expect->spawn($command)
-        or croak "Couldn't spawn command $command: $!\n";
+        or croak "Couldn't spawn command $command: $ERRNO\n";
     my @log;
     $expect->log_stdout(0);
     $expect->log_file(sub { push(@log, $_[0]); });
