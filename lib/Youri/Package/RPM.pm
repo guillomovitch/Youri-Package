@@ -141,7 +141,13 @@ sub is_debug {
     my ($self) = @_;
     croak "Not a class method" unless ref $self;
 
-    return $self->get_name() =~ /-debug$/;
+    my $name = $self->get_name();
+    my $group = $self->get_tag('group');
+
+    # debug packages names must end in -debug or -debuginfo
+    return 
+        $group eq 'Development/Debug' &&
+        ($name =~ /-debug$/ || $name =~ /-debuginfo$/);
 }
 
 1;
