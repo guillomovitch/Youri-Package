@@ -5,7 +5,7 @@ WriteMakefile(
     NAME         => 'Youri::Package',
     VERSION_FROM => 'lib/Youri/Package.pm',
     AUTHOR       => 'Youri project <youri@zarb.org>',
-    PREREQ_PM  => {
+    PREREQ_PM    => {
         'base'                           => 0,
         'constant'                       => 0,
         'feature'                        => 0,
@@ -30,7 +30,7 @@ WriteMakefile(
         'UNIVERSAL::require'             => 0,
         'URPM'                           => 0,
     },
-    TEST_REQUIRES_PM  => {
+    TEST_REQUIRES  => {
         'File::Copy'                     => 0,
         'File::Temp'                     => 0,
         'File::Which'                    => 0,
