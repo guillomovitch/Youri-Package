@@ -40,4 +40,4 @@ foreach my $name (keys %rpm_dirs) {
 $wrapper_class->install_srpm($package);
 
 my @subdirs = <$topdir/*>;
-is (@subdirs, 2, 'installation tree state');
+is (@subdirs, 1, 'installation tree state');
