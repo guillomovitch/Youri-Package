@@ -247,7 +247,7 @@ sub as_formated_string {
     my ($self, $format) = @_;
     croak "Not a class method" unless ref $self;
 
-    $format =~ s/%{([^}]+)}/$self->{_tags}->{$1}/eg;
+    $format =~ s/%\{([^}]+)\}/$self->{_tags}->{$1}/eg;
     return $format;
 }
 
