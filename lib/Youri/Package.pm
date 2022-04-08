@@ -13,7 +13,7 @@ This abstract class defines Youri::Package interface.
 
 use strict;
 use warnings;
-use version; our $VERSION = qv('0.2.5');
+use version; our $VERSION = qv('0.2.6');
 
 use Carp;
 

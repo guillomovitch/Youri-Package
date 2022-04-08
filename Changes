@@ -1,3 +1,6 @@
+2022-04-08 Guillaume Rousse <guillomovitch@zarb.org> 0.2.6
+	* fix dependencies parsing: [ is a valid character in name
+
 2017-10-28 Guillaume Rousse <guillomovitch@zarb.org> 0.2.5
 	* complete dependencies list
 	* fix regexp in Youri::Package::RPM::Test
