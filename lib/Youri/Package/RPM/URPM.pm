@@ -245,7 +245,7 @@ sub get_requires {
     my ($self) = @_;
     croak "Not a class method" unless ref $self;
 
-    my $pattern = qr/^([^[]+)(?:\[\*\])?(?:\[(.+)\])?$/;
+    my $pattern = qr/^(\S+)(?:\[\*\])?(?:\[(.+)\])?$/;
 
     return map {
         $_ =~ $pattern;
