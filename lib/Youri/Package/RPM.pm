@@ -144,10 +144,10 @@ sub is_debug {
     my $name = $self->get_name();
     my $group = $self->get_tag('group');
 
-    # debug packages names must end in -debug or -debuginfo
+    # debug packages names must end in -debug or -debuginfo or -debugsource
     return 
         $group eq 'Development/Debug' &&
-        ($name =~ /-debug$/ || $name =~ /-debuginfo$/);
+        ($name =~ /-debug$/ || $name =~ /-debuginfo$/ || $name =~ /-debugsource$/);
 }
 
 1;
