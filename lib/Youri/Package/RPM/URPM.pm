@@ -33,6 +33,11 @@ use Youri::Package::Change;
 use Youri::Package::File;
 use Youri::Package::Relationship;
 
+my $relationship_pattern = qr/^
+    ([^\s*]+)     # name: everything BUT space and * characters
+    (?:\[(.+)\])? # optional version suffix
+    $/x;
+
 =head1 CLASS METHODS
 
 =head2 new(%args)
@@ -245,11 +250,9 @@ sub get_requires {
     my ($self) = @_;
     croak "Not a class method" unless ref $self;
 
-    my $pattern = qr/^(\S+)(?:\[\*\])?(?:\[(.+)\])?$/;
-
     return map {
-        $_ =~ $pattern;
-        Youri::Package::Relationship->new($1, $2)
+        $_ =~ $relationship_pattern;
+        Youri::Package::Relationship->new($1, $2 && $2 ne '*' ?  $2 : undef)
     } $self->{_header}->requires();
 }
 
@@ -257,10 +260,8 @@ sub get_provides {
     my ($self) = @_;
     croak "Not a class method" unless ref $self;
 
-    my $pattern = qr/^(\S+)(?:\[(.+)\])?$/;
-
     return map {
-        $_ =~ /$pattern/;
+        $_ =~ $relationship_pattern;
         Youri::Package::Relationship->new($1, $2 && $2 ne '*' ?  $2 : undef)
     } $self->{_header}->provides();
 }
@@ -269,10 +270,8 @@ sub get_obsoletes {
     my ($self) = @_;
     croak "Not a class method" unless ref $self;
 
-    my $pattern = qr/^([^[]+)(?:\[(.+)\])?$/;
-
     return map {
-        $_ =~ $pattern;
+        $_ =~ $relationship_pattern;
         Youri::Package::Relationship->new($1, $2 && $2 ne '*' ?  $2 : undef)
     } $self->{_header}->obsoletes();
 }
@@ -281,10 +280,8 @@ sub get_conflicts {
     my ($self) = @_;
     croak "Not a class method" unless ref $self;
 
-    my $pattern = qr/^([^[]+)(?:\[(.+)\])?$/;
-
     return map {
-        $_ =~ $pattern;
+        $_ =~ $relationship_pattern;
         Youri::Package::Relationship->new($1, $2 && $2 ne '*' ?  $2 : undef)
     } return $self->{_header}->conflicts();
 }
