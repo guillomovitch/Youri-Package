@@ -34,8 +34,9 @@ use Youri::Package::File;
 use Youri::Package::Relationship;
 
 my $relationship_pattern = qr/^
-    ([^\s*]+)     # name: everything BUT space and * characters
-    (?:\[(.+)\])? # optional version suffix
+    ([^\s*]+)      # name: everything BUT space and * characters
+    (?:\[\*\])   ? # optional scriptlet flag
+    (?:\[(.+)\]) ? # optional version suffix
     $/x;
 
 =head1 CLASS METHODS
@@ -252,7 +253,7 @@ sub get_requires {
 
     return map {
         $_ =~ $relationship_pattern;
-        Youri::Package::Relationship->new($1, $2 && $2 ne '*' ?  $2 : undef)
+        Youri::Package::Relationship->new($1, $2)
     } $self->{_header}->requires();
 }
 
@@ -262,7 +263,7 @@ sub get_provides {
 
     return map {
         $_ =~ $relationship_pattern;
-        Youri::Package::Relationship->new($1, $2 && $2 ne '*' ?  $2 : undef)
+        Youri::Package::Relationship->new($1, $2)
     } $self->{_header}->provides();
 }
 
@@ -272,7 +273,7 @@ sub get_obsoletes {
 
     return map {
         $_ =~ $relationship_pattern;
-        Youri::Package::Relationship->new($1, $2 && $2 ne '*' ?  $2 : undef)
+        Youri::Package::Relationship->new($1, $2)
     } $self->{_header}->obsoletes();
 }
 
@@ -282,7 +283,7 @@ sub get_conflicts {
 
     return map {
         $_ =~ $relationship_pattern;
-        Youri::Package::Relationship->new($1, $2 && $2 ne '*' ?  $2 : undef)
+        Youri::Package::Relationship->new($1, $2)
     } return $self->{_header}->conflicts();
 }
 
