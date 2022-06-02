@@ -38,5 +38,15 @@ WriteMakefile(
         'Test::Kwalitee'                 => 0,
         'Test::More'                     => 0,
         'Youri::Package::RPM::Generator' => 0,
+    },
+    META_MERGE => {
+        'meta-spec' => { version => 2 },
+        'resources' => {
+            repository => {
+                type => 'git',
+                url  => 'git://github.com/guillomovitch/Youri-Package.git',
+                web  => 'https://github.com/guillomovitch/Youri-Package'
+            },
+        }
     }
 );
